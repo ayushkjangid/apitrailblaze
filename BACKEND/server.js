@@ -2,6 +2,7 @@ const express = require("express");
 const colors = require("colors");
 const dotenv = require("dotenv").config();
 const morgan = require("morgan");
+const cors = require("cors");
 const rootroute = require("./routes/rootroutes");
 const trekroute = require("./routes/treksroute");
 const connectDB = require("./config/db");
@@ -12,6 +13,7 @@ const PORT = process.env.PORT || 8080; // Use port 8080 or fallback to 7000
 connectDB();
 app.use(express.json());
 app.use(morgan('dev')); // Optional: Add morgan middleware for logging requests
+app.use(cors()); // Enable CORS for all routes
 
 app.use("/", rootroute);
 app.use("/api/treks", trekroute); // Assuming you want to use trekroute as well
