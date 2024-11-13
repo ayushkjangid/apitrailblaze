@@ -31,6 +31,11 @@ const gettrekcontroller = async (req, res) => {
                 type: { $regex: new RegExp(type, "i") },
             });
         }
+             else if (id) {
+            treks = await TrekCollection.find({
+                type: { $regex: new RegExp(type, "i") },
+            });
+        }
         // Random sample
         else if (req.path.includes("/random")) {
             treks = await TrekCollection.aggregate([{ $sample: { size: 16 } }]);
